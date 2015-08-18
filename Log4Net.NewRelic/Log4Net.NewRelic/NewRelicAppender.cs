@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using log4net.Appender;
 using log4net.Core;
 
-namespace Log4Net.NewRelics
+namespace Log4Net.NewRelic
 {
     public class NewRelicAppender : AppenderSkeleton
     {
