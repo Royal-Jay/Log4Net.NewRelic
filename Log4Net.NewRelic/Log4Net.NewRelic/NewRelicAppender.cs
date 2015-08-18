@@ -9,6 +9,8 @@ namespace Log4Net.NewRelic
     {
         //https://docs.newrelic.com/docs/agents/net-agent/features/new-relic-net-status-monitor
         //https://docs.newrelic.com/docs/agents/net-agent/features/net-agent-api
+        //nuget pack Log4Net.NewRelic.csproj -Prop Configuration=Release
+
         protected override void Append(LoggingEvent loggingEvent)
         {
             IDictionary<string, string> parameters = new Dictionary<string, string>();
