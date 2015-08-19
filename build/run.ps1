@@ -20,15 +20,8 @@ param(
 
 ## adding helper script parameters
   [Parameter(Position=6, Mandatory=0)]
-  [string]$baseUri = "",
-  [Parameter(Position=7, Mandatory=0)]
-  [string]$ClientId = "",
-  [Parameter(Position=8, Mandatory=0)]
-  [string]$ClientSecret = "",
-  [Parameter(Position=9, Mandatory=0)]
-  [string]$AppId = "",
-  [Parameter(Position=10, Mandatory=0)]
-  [string]$DirectMessageDomain = ""
+  [string]$version = '0.0.0.1'
+
 ##  -- -- -- -- -- -- -- -- -- -- -- --
 )
 
@@ -218,6 +211,7 @@ function Get-WebFile {
 remove-module psake -ea 'SilentlyContinue'
 $scriptPath = Split-Path -parent $MyInvocation.MyCommand.path
 import-module (join-path $scriptPath \tools\psake.psm1)
+
 if (-not(test-path $buildFile))
 {
     $buildFile = (join-path $scriptPath $buildFile)
@@ -228,24 +222,9 @@ if([string]::IsNullOrEmpty($BaseUri) -eq $false){
 	$properties.Add("BaseUri",$BaseUri)
 }
 
-if([string]::IsNullOrEmpty($ClientId) -eq $false){
-	Write-Host - Adding ClientId -ForegroundColor green
-	$properties.Add("ClientId",$ClientId)
-}
-
-if([string]::IsNullOrEmpty($ClientSecret) -eq $false){
+if([string]::IsNullOrEmpty($version) -eq $false){
   Write-Host - Adding ClientSecret -ForegroundColor green
-  $properties.Add("ClientSecret",$ClientSecret)
-}
-
-if([string]::IsNullOrEmpty($AppId) -eq $false){
-  Write-Host - Adding AppId -ForegroundColor green
-  $properties.Add("AppId",$AppId)
-}
-
-if([string]::IsNullOrEmpty($DirectMessageDomain) -eq $false){
-	Write-Host - Adding DirectMessageDomain -ForegroundColor green
-	$properties.Add("DirectMessageDomain",$DirectMessageDomain)
+  $properties.Add("version",$version)
 }
 
 invoke-psake $buildFile $taskList $framework $docs $parameters $properties

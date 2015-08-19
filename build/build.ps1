@@ -3,7 +3,7 @@ properties {
 
   #PARAMS
   $version = "1.0.0.0"
-  $build_level = "Debug"
+  $build_level = "Release"
 
   #PATHS
   $build_dir = Split-Path $psake.build_script_file
@@ -16,6 +16,7 @@ properties {
 
   $solution_name = "RoyalJay.Log4Net.NewRelic"
   $solution_file = "$srcDir\$solution_name.sln"
+  
 }
 
 include tools\psake_utils.ps1
@@ -24,7 +25,7 @@ include tools\nuget-utils.ps1
 include tools\git-utils.ps1
 include tools\ilmerge-utils.ps1
 
-task default -depends Compile 
+task default -depends Compile, Package
 
 task Compile -depends Clean, Package-Restore {
   $script:build_level = $build_level
@@ -47,4 +48,9 @@ task Clean {
     Write-Host "Removing $obj"
     Delete-Directory($obj)
   }
+}
+
+task Package {
+ Create-Directory $artifacts_dir
+   & $build_dir\..\packages\NuGet.exe pack $srcDir\RoyalJay.Log4Net.NewRelic\RoyalJay.Log4Net.NewRelic.csproj -Version $version -o $artifacts_dir -Prop Configuration=$script:build_level
 }
