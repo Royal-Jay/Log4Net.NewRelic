@@ -7,8 +7,8 @@
     <ProjectGuid>{BCB62A83-BFE8-4F8A-94B4-624BBE6987B5}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Log4Net.NewRelic</RootNamespace>
-    <AssemblyName>Log4Net.NewRelic</AssemblyName>
+    <RootNamespace>RoyalJay.Log4Net.NewRelic</RootNamespace>
+    <AssemblyName>RoyalJay.Log4Net.NewRelic</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

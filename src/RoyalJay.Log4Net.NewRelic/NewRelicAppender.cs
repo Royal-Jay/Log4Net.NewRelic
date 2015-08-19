@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using log4net.Appender;
 using log4net.Core;
 
-namespace Log4Net.NewRelic
+namespace RoyalJay.Log4Net.NewRelic
 {
     public class NewRelicAppender : AppenderSkeleton
     {
         //https://docs.newrelic.com/docs/agents/net-agent/features/new-relic-net-status-monitor
         //https://docs.newrelic.com/docs/agents/net-agent/features/net-agent-api
         //nuget pack Log4Net.NewRelic.csproj -Prop Configuration=Release
+        //Install-Package Log4Net.NewRelic.1.0
 
         protected override void Append(LoggingEvent loggingEvent)
         {
